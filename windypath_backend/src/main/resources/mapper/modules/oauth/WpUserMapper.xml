@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windypath.blog.modules.oauth.dao.WpUserMapper">
+  <resultMap id="BaseResultMap" type="com.windypath.blog.modules.oauth.pojo.WpUser">
+    <id column="ID" property="id" />
+    <result column="USERNAME" property="username" />
+    <result column="PASSWORD" property="password" />
+    <result column="NICKNAME" property="nickname" />
+    <result column="AVATAR" property="avatar" />
+    <result column="EMAIL" property="email" />
+    <result column="MOBILE" property="mobile" />
+    <result column="SIGNATURE" property="signature" />
+    <result column="CREATE_TIME" property="createTime" />
+    <result column="UPDATE_TIME" property="updateTime" />
+    <result column="DISABLED" property="disabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERNAME, PASSWORD, NICKNAME, AVATAR, EMAIL, MOBILE, SIGNATURE, CREATE_TIME, 
+    UPDATE_TIME, DISABLED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wp_user
+    where ID = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey">
+    delete from wp_user
+    where ID = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.windypath.blog.modules.oauth.pojo.WpUser" useGeneratedKeys="true" keyProperty="id">
+    insert into wp_user (ID, USERNAME, PASSWORD, NICKNAME, AVATAR, EMAIL, MOBILE, 
+      SIGNATURE, CREATE_TIME, UPDATE_TIME, DISABLED)
+    values (#{id}, #{username}, #{password}, #{nickname}, #{avatar}, #{email}, #{mobile}, 
+      #{signature}, #{createTime}, #{updateTime}, #{disabled})
+  </insert>
+  <insert id="insertSelective" parameterType="com.windypath.blog.modules.oauth.pojo.WpUser" useGeneratedKeys="true" keyProperty="id">
+    insert into wp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="nickname != null">
+        NICKNAME,
+      </if>
+      <if test="avatar != null">
+        AVATAR,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="signature != null">
+        SIGNATURE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="disabled != null">
+        DISABLED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="username != null">
+        #{username},
+      </if>
+      <if test="password != null">
+        #{password},
+      </if>
+      <if test="nickname != null">
+        #{nickname},
+      </if>
+      <if test="avatar != null">
+        #{avatar},
+      </if>
+      <if test="email != null">
+        #{email},
+      </if>
+      <if test="mobile != null">
+        #{mobile},
+      </if>
+      <if test="signature != null">
+        #{signature},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="disabled != null">
+        #{disabled},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update wp_user
+    <set>
+      <if test="username != null">
+        USERNAME = #{username},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password},
+      </if>
+      <if test="nickname != null">
+        NICKNAME = #{nickname},
+      </if>
+      <if test="avatar != null">
+        AVATAR = #{avatar},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile},
+      </if>
+      <if test="signature != null">
+        SIGNATURE = #{signature},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime},
+      </if>
+      <if test="disabled != null">
+        DISABLED = #{disabled},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+  <update id="updateByPrimaryKey">
+    update wp_user
+    set USERNAME = #{username},
+      PASSWORD = #{password},
+      NICKNAME = #{nickname},
+      AVATAR = #{avatar},
+      EMAIL = #{email},
+      MOBILE = #{mobile},
+      SIGNATURE = #{signature},
+      CREATE_TIME = #{createTime},
+      UPDATE_TIME = #{updateTime},
+      DISABLED = #{disabled}
+    where ID = #{id}
+  </update>
+</mapper>
