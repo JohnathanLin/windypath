@@ -157,4 +157,11 @@
       DISABLED = #{disabled}
     where ID = #{id}
   </update>
+
+  <select id="findByUsername" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM WP_USER
+    WHERE USERNAME = #{username}
+  </select>
 </mapper>

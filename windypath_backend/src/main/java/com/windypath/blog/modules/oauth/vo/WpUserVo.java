@@ -1,20 +1,21 @@
-package com.windypath.blog.modules.oauth.pojo;
+package com.windypath.blog.modules.oauth.vo;
 
+import lombok.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 /**
-* Created by Mybatis Generator 2020/08/02
-*/
+ * @author Johnathan Lin, E-mail: johnathan@windypath.com
+ * @date 2020/8/5 22:43
+ */
+@Builder
 @Getter
 @Setter
-@ToString
-@Builder
-public class WpUser {
+@NoArgsConstructor
+@AllArgsConstructor
+public class WpUserVo implements Serializable {
+  
     /**
      * 用户id
      */
