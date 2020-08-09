@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '英雄联盟数据后台管理系统',
+  title: '风萧古道 - 后台管理系统',
 
   /**
    * @type {boolean} true | false

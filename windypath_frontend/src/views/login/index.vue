@@ -44,9 +44,7 @@
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
     </el-form>
-    <el-button @click="test">
-      测试
-    </el-button>
+
   </div>
 </template>
 
@@ -106,11 +104,6 @@ export default {
         }
       })
     },
-    test() {
-      testConnnect().then(response => {
-        console.log(response)
-      })
-    }
   }
 }
 </script>

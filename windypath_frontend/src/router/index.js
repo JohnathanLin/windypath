@@ -76,6 +76,12 @@ export const constantRoutes = [
         meta: { title: '评论管理', icon: 'tree' }
       },
       {
+        path: 'category',
+        name: 'Category',
+        component: () => import('@/views/dataControl/category/category'),
+        meta: { title: '分类管理', icon: 'tree' }
+      },
+      {
         path: 'tag',
         name: 'Tag',
         component: () => import('@/views/dataControl/tag/tag'),

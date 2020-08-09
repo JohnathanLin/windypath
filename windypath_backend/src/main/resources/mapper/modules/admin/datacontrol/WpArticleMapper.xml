@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windypath.blog.modules.admin.datacontrol.dao.WpArticleMapper">
+  <resultMap id="BaseResultMap" type="com.windypath.blog.modules.admin.datacontrol.pojo.WpArticle">
+    <id column="ID" property="id" />
+    <result column="TITLE_CN" property="titleCn" />
+    <result column="UPDATE_TIME" property="updateTime" />
+    <result column="CREATE_TIME" property="createTime" />
+    <result column="TITLE_EN" property="titleEn" />
+    <result column="USER_ID" property="userId" />
+    <result column="STATUS" property="status" />
+    <result column="COMMENT_NUM" property="commentNum" />
+    <result column="CATEGORY_ID" property="categoryId" />
+    <result column="PICTURE" property="picture" />
+    <result column="ALLOW_COMMENT" property="allowComment" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.windypath.blog.modules.admin.datacontrol.pojo.WpArticleWithBLOBs">
+    <result column="CONTENT_CN" property="contentCn" />
+    <result column="CONTENT_EN" property="contentEn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TITLE_CN, UPDATE_TIME, CREATE_TIME, TITLE_EN, USER_ID, STATUS, COMMENT_NUM, CATEGORY_ID,
+    PICTURE, ALLOW_COMMENT
+  </sql>
+  <sql id="Blob_Column_List">
+    CONTENT_CN, CONTENT_EN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from wp_article
+    where ID = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey">
+    delete from wp_article
+    where ID = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.windypath.blog.modules.admin.datacontrol.pojo.WpArticleWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+    insert into wp_article (ID, TITLE_CN, UPDATE_TIME, CREATE_TIME, TITLE_EN, USER_ID, STATUS,
+      COMMENT_NUM, CATEGORY_ID, PICTURE, ALLOW_COMMENT, CONTENT_CN, CONTENT_EN
+      )
+    values (#{id}, #{titleCn}, #{updateTime}, #{createTime}, #{titleEn}, #{userId}, #{status},
+      #{commentNum}, #{categoryId}, #{picture}, #{allowComment}, #{contentCn}, #{contentEn}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.windypath.blog.modules.admin.datacontrol.pojo.WpArticle" useGeneratedKeys="true" keyProperty="id">
+    insert into wp_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="titleCn != null">
+        TITLE_CN,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="titleEn != null">
+        TITLE_EN,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="commentNum != null">
+        COMMENT_NUM,
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID,
+      </if>
+      <if test="picture != null">
+        PICTURE,
+      </if>
+      <if test="allowComment != null">
+        ALLOW_COMMENT,
+      </if>
+      <if test="contentCn != null">
+        CONTENT_CN,
+      </if>
+      <if test="contentEn != null">
+        CONTENT_EN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="titleCn != null">
+        #{titleCn},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="titleEn != null">
+        #{titleEn},
+      </if>
+      <if test="userId != null">
+        #{userId},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId},
+      </if>
+      <if test="picture != null">
+        #{picture},
+      </if>
+      <if test="allowComment != null">
+        #{allowComment},
+      </if>
+      <if test="contentCn != null">
+        #{contentCn},
+      </if>
+      <if test="contentEn != null">
+        #{contentEn},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update wp_article
+    <set>
+      <if test="titleCn != null">
+        TITLE_CN = #{titleCn},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime},
+      </if>
+      <if test="titleEn != null">
+        TITLE_EN = #{titleEn},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId},
+      </if>
+      <if test="status != null">
+        STATUS = #{status},
+      </if>
+      <if test="commentNum != null">
+        COMMENT_NUM = #{commentNum},
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID = #{categoryId},
+      </if>
+      <if test="picture != null">
+        PICTURE = #{picture},
+      </if>
+      <if test="allowComment != null">
+        ALLOW_COMMENT = #{allowComment},
+      </if>
+      <if test="contentCn != null">
+        CONTENT_CN = #{contentCn},
+      </if>
+      <if test="contentEn != null">
+        CONTENT_EN = #{contentEn},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs">
+    update wp_article
+    set TITLE_CN = #{titleCn},
+      UPDATE_TIME = #{updateTime},
+      CREATE_TIME = #{createTime},
+      TITLE_EN = #{titleEn},
+      USER_ID = #{userId},
+      STATUS = #{status},
+      COMMENT_NUM = #{commentNum},
+      CATEGORY_ID = #{categoryId},
+      PICTURE = #{picture},
+      ALLOW_COMMENT = #{allowComment},
+      CONTENT_CN = #{contentCn},
+      CONTENT_EN = #{contentEn}
+    where ID = #{id}
+  </update>
+  <update id="updateByPrimaryKey">
+    update wp_article
+    set TITLE_CN = #{titleCn},
+      UPDATE_TIME = #{updateTime},
+      CREATE_TIME = #{createTime},
+      TITLE_EN = #{titleEn},
+      USER_ID = #{userId},
+      STATUS = #{status},
+      COMMENT_NUM = #{commentNum},
+      CATEGORY_ID = #{categoryId},
+      PICTURE = #{picture},
+      ALLOW_COMMENT = #{allowComment}
+    where ID = #{id}
+  </update>
+
+  <select id="findByPage" resultType="com.windypath.blog.modules.admin.datacontrol.vo.WpArticleVo">
+    SELECT
+    wp_article.ID, TITLE_CN, wp_article.UPDATE_TIME, wp_article.CREATE_TIME, TITLE_EN, USER_ID, wp_article.STATUS, COMMENT_NUM, CATEGORY_ID,
+    PICTURE, ALLOW_COMMENT, wp_user.username, wp_category.name as category_name
+    FROM wp_article left join wp_user on wp_article.user_id = wp_user.id
+    left join wp_category on wp_article.category_id = wp_category.id
+    <where>
+      <if test="titleCn != null and titleCn != ''">
+        instr(title_cn, #{titleCn}) > 0
+      </if>
+      <if test="status != null and status != ''">
+        status = #{status}
+      </if>
+    </where>
+  </select>
+
+  <select id="getById" resultType="com.windypath.blog.modules.admin.datacontrol.vo.WpArticleVo">
+    SELECT
+    wp_article.ID, TITLE_CN, wp_article.UPDATE_TIME, wp_article.CREATE_TIME, TITLE_EN, USER_ID, wp_article.STATUS, COMMENT_NUM, CATEGORY_ID,
+    PICTURE, ALLOW_COMMENT, CONTENT_CN, CONTENT_EN, wp_user.username, wp_category.name as category_name
+    FROM wp_article left join wp_user on wp_article.user_id = wp_user.id
+    left join wp_category on wp_article.category_id = wp_category.id
+    where wp_article.id = #{id}
+  </select>
+
+</mapper>
